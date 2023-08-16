@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  api-dev:
+    build:
+      context: api
+      dockerfile: Dockerfile.api
+    ports:
+      - "8001:8001"
+    depends_on:
+      - sql
+    networks:
+      - bridge
+
+  sql:
+    image: mysql
+    volumes:
+      - c:/mysql-data:/var/lib/mysql
+      - ./users.sql:/docker-entrypoint-initdb.d/users.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: db4dev$
+      MYSQL_DATABASE: db_dev
+    command: ["--init-file", "/docker-entrypoint-initdb.d/users.sql"]  # Execute the script as an init file
+    networks:
+      - bridge
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: sql
+      MYSQL_ROOT_PASSWORD: db4dev$
+      MYSQL_USER: admin
+    networks:
+      - bridge
+
+networks:
+  bridge:
+    driver: bridge
