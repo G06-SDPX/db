@@ -15,7 +15,7 @@ services:
   sql:
     image: mysql
     volumes:
-      - c:/mysql-data:/var/lib/mysql
+      - c:/mysql-data-test:/var/lib/mysql
       - ./users.sql:/docker-entrypoint-initdb.d/users.sql
     environment:
       MYSQL_ROOT_PASSWORD: db4test$
