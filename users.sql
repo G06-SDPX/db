@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-CREATE USER 'admin'@'%' IDENTIFIED BY 'db4dev$';
-GRANT ALL PRIVILEGES ON .* TO 'admin'@'%';
+CREATE USER 'admin'@'%' IDENTIFIED BY 'db4test$';
+GRANT ALL PRIVILEGES ON db_test.* TO 'admin'@'%';
 --
--- Database: `db_dev`
+-- Database: `db_test`
 --
-CREATE DATABASE IF NOT EXISTS db_dev;
-USE db_dev;
+CREATE DATABASE IF NOT EXISTS db_test;
+USE db_test;
 -- --------------------------------------------------------
 
 --
